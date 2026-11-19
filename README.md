@@ -24,3 +24,6 @@ Abre `http://localhost:8000/index.html`.
 - [API](docs/api.md)
 - [Datos](docs/datos.md)
 - [Publicación](docs/publicacion.md)
+- [Configuración MySQL](docs/mysql.md)
+- [Despliegue en InfinityFree](docs/deploy-infinityfree.md)
+- [Datos personales](docs/datos-personales.md)

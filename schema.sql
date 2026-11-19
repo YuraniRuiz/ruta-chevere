@@ -1,0 +1,10 @@
+-- Tablas principales para Ruta Chévere
+CREATE TABLE IF NOT EXISTS app_state (
+  id TINYINT UNSIGNED PRIMARY KEY,
+  data_json LONGTEXT NOT NULL,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO app_state (id, data_json)
+VALUES (1, '{}')
+ON DUPLICATE KEY UPDATE id = VALUES(id);

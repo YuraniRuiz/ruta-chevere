@@ -2,3 +2,4 @@ data/
 *.log
 *.doc
 *.docx
+config.local.php
