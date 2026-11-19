@@ -95,11 +95,11 @@ footer{max-width:980px;margin:0 auto;padding:12px 20px 30px;font-size:12px;color
   <div id="flash"></div>
   <div id="view"></div>
 </main>
-<footer>Prototipo MVP. Los datos se guardan solo en este navegador. Tratamiento de datos personales conforme a la Ley 1581 de 2012.</footer>
+<footer>Prototipo MVP. Los datos se guardan en el servidor PHP. Tratamiento de datos personales conforme a la Ley 1581 de 2012.</footer>
 
 <script>
 const KEY = 'rutachevere_mvp_v1';
-let db = load();
+let db = seed();
 let view = null;
 let flash = null;
 let filtro = { o: '', d: '', f: '' };
@@ -122,8 +122,21 @@ function seed(){
     ]
   };
 }
-function load(){ try { const s = localStorage.getItem(KEY); if (s) return JSON.parse(s); } catch (e) {} return seed(); }
-function save(){ try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+async function load(){
+  try{
+    const r = await fetch('api.php', {headers:{'Accept':'application/json'}});
+    if (!r.ok) throw new Error('Backend no disponible');
+    db = await r.json();
+  }catch(e){
+    console.error(e);
+    db = seed();
+  }
+}
+async function save(){
+  try{
+    await fetch('api.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({db})});
+  }catch(e){ console.error('No se pudo guardar en PHP',e); }
+}
 
 /* ---------- Utilidades ---------- */
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -425,7 +438,7 @@ document.addEventListener('input', e => {
     if (e.target.id === 'fd') filtro.d = e.target.value;
   }
 });
-render();
+(async()=>{ await load(); render(); })();
 </script>
 </body>
 </html>
