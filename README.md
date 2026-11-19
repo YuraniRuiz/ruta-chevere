@@ -1,17 +1,26 @@
 # Ruta Chévere
 
-Aplicación prototipo para conectar conductores y pasajeros.
+Prototipo web para compartir rutas entre conductores y pasajeros.
 
-## Ejecutar con PHP
+## Tecnologías
+
+- HTML, CSS y JavaScript.
+- PHP 8 para la API.
+- JSON para persistencia local.
+- Google Maps para mostrar rutas.
+
+## Inicio rápido
 
 ```powershell
 php -S localhost:8000
 ```
 
-Abrir `http://localhost:8000/index.html`.
+Abre `http://localhost:8000/index.html`.
 
-PHP guarda los datos en `data/rutachevere.json`.
+## Documentación
 
-## Publicación
-
-GitHub Pages solo admite archivos estáticos y no ejecuta PHP. Para publicar el backend PHP se requiere un hosting con PHP, por ejemplo Render, Railway, InfinityFree o un hosting compartido.
+- [Arquitectura](docs/arquitectura.md)
+- [Ejecutar localmente](docs/ejecucion.md)
+- [API](docs/api.md)
+- [Datos](docs/datos.md)
+- [Publicación](docs/publicacion.md)
