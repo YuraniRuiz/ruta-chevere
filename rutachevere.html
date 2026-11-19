@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruta Chévere</title>
+<style>
+:root{--brand:#ed7c28;--brand-d:#b94d11;--brand-l:#fff0df;--acc:#ffc15a;--bg:#faf7f2;--card:#fff;--tx:#24201d;--mu:#756f68;--bd:#e8dfd4;--red:#a32d2d;--redl:#fcebeb;--grn:#27500a;--grnl:#edf5e5;--amb:#633806;--ambl:#faeeda;--shadow:0 10px 28px rgba(135,70,20,.09)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,"Segoe UI",system-ui,-apple-system,Arial,sans-serif;background:radial-gradient(circle at top right,#ffe6c7 0,transparent 28rem),var(--bg);color:var(--tx);line-height:1.5}
+header{background:linear-gradient(135deg,#bd4d13,#ef7e27);color:#fff;padding:16px 20px;box-shadow:0 5px 20px rgba(185,77,17,.18)}
+.wrap{max-width:980px;margin:0 auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:9px;font-size:24px;font-weight:800;letter-spacing:-.5px}
+.logo-mark{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#fff;color:#111;box-shadow:0 5px 14px rgba(91,39,9,.16)}
+.logo-mark svg{width:29px;height:29px}
+.logo span{color:#fff2a8}
+.tag{font-size:13px;margin-top:2px;opacity:.88}
+.ses{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ses select{width:auto;min-width:220px}
+main{max-width:980px;margin:0 auto;padding:20px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px;border-bottom:1px solid var(--bd);padding-bottom:12px}
+nav button{background:rgba(255,255,255,.75);border:1px solid var(--bd);color:var(--mu);border-radius:999px;padding:8px 14px;transition:.18s ease}
+nav button.on{background:var(--brand-l);color:var(--brand-d);border-color:#ffc58f;font-weight:700;box-shadow:0 3px 10px rgba(237,124,40,.10)}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid #d7cbbb;border-radius:10px;font-size:14px;font-family:inherit;background:#fff;transition:.18s ease}
+input:focus,select:focus,textarea:focus{outline:3px solid rgba(237,124,40,.14);border-color:var(--brand)}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--brand);flex:0 0 auto;margin-top:1px}
+button{padding:9px 16px;border:1px solid #c4b7a7;background:#fff;border-radius:10px;cursor:pointer;font-size:14px;font-family:inherit;font-weight:650;transition:.18s ease}
+button:hover{background:#fff4e8;transform:translateY(-1px)}
+button:active{transform:translateY(0)}
+button:disabled{cursor:not-allowed;opacity:.55;transform:none}
+button.p{background:var(--brand);color:#fff;border-color:var(--brand);box-shadow:0 5px 14px rgba(237,124,40,.18)}
+button.p:hover{background:var(--brand-d)}
+button.d{color:var(--red);border-color:#eca7a7}
+button.d:hover{background:var(--redl)}
+button.s{padding:7px 12px;font-size:13px}
+a.btn{display:inline-block;padding:7px 12px;font-size:13px;border:1px solid #c5af99;border-radius:10px;color:var(--brand-d);text-decoration:none;background:#fff;font-weight:700}
+h2{font-size:22px;line-height:1.2;font-weight:800;margin:0 0 5px;letter-spacing:-.3px}
+h3{font-size:16px;margin:0 0 6px}
+.sub{color:var(--mu);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px 18px;margin:0 0 12px;box-shadow:var(--shadow)}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 12px}
+.row>div{flex:1;min-width:150px}
+label{display:block;font-size:13px;color:var(--mu);margin:0 0 5px;font-weight:650}
+.sm{font-size:13px;color:var(--mu);margin:3px 0}
+.badge{display:inline-block;font-size:12px;padding:3px 10px;border-radius:999px;margin-left:7px;font-weight:800}
+.b-ok{background:var(--grnl);color:var(--grn)}
+.b-w{background:var(--ambl);color:var(--amb)}
+.b-r{background:var(--redl);color:var(--red)}
+.b-g{background:#f1efe8;color:var(--mu)}
+.msg{padding:12px 14px;border-radius:12px;margin:0 0 14px;font-size:14px;border-left:4px solid currentColor}
+.m-ok{background:var(--grnl);color:var(--grn)}
+.m-er{background:var(--redl);color:var(--red)}
+.m-in{background:var(--ambl);color:var(--amb)}
+.trip{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+.trip>div:first-child{flex:1;min-width:230px}
+.fare{font-size:22px;font-weight:800;color:var(--brand-d)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:0 0 16px}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+.kpi span{display:block;font-size:13px;color:var(--mu);font-weight:650}
+.kpi b{font-size:28px;font-weight:800;color:var(--brand-d)}
+.bar{height:9px;background:#eee8df;border-radius:999px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),#ffc15a);border-radius:999px}
+.empty{text-align:center;color:var(--mu);padding:40px 12px;border:1px dashed var(--bd);border-radius:16px;background:rgba(255,255,255,.55)}
+.map-wrap{margin-top:12px;border:1px solid var(--bd);border-radius:12px;overflow:hidden;background:#fff}
+.map-wrap iframe{display:block;width:100%;height:220px;border:0}
+.map-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+footer{max-width:980px;margin:0 auto;padding:12px 20px 30px;font-size:12px;color:var(--mu)}
+.app-splash{min-height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(150deg,#eef8ff,#fff 72%);border:1px solid #dfeaf0;border-radius:24px;overflow:hidden;position:relative;box-shadow:var(--shadow)}
+.app-splash:before,.app-splash:after{content:"";position:absolute;width:260px;height:260px;border:22px solid rgba(105,177,202,.12);border-radius:42%;transform:rotate(20deg)}
+.app-splash:before{left:-150px;bottom:-100px}.app-splash:after{right:-170px;top:-130px}.app-splash>*{position:relative;z-index:1}
+.app-splash .logo-mark{width:82px;height:82px;border-radius:22px;color:#111;font-size:42px}
+.app-splash .logo-mark svg{width:55px;height:55px}.app-splash h1{font-size:28px;margin:18px 0 0}
+.app-home{text-align:center}.route-map-card{background:white;border:1px solid var(--bd);border-radius:20px;padding:12px;box-shadow:var(--shadow);overflow:hidden}
+.route-preview{height:280px;border-radius:14px;overflow:hidden;background:linear-gradient(150deg,#edf2f4,#fff)}
+.route-preview iframe{width:100%;height:100%;border:0}.home-actions{display:flex;justify-content:center;gap:12px;margin:16px 0 18px}.home-actions button{min-width:180px;border-radius:999px;padding:12px 18px}.home-actions .confirm{background:#25a8b4;border-color:#25a8b4}.home-actions .search{background:#e6a320;border-color:#e6a320}
+.active-panel{border:2px solid #2e3335;border-radius:8px;overflow:hidden;background:#fff;text-align:left}.active-title{background:linear-gradient(90deg,#f0a32d,#f1a126);color:#fff;padding:10px 14px;font-size:20px;font-weight:900;text-transform:uppercase;text-align:center}.active-row{display:grid;grid-template-columns:minmax(170px,1fr) auto auto;gap:10px;align-items:center;border-bottom:2px dotted #777;padding:10px 14px}.active-main strong{display:block;font-size:19px;text-transform:uppercase}.active-main small{font-size:16px;font-style:italic;color:#555}.active-price{text-align:right;font-weight:800}.active-actions{display:flex;flex-direction:column;gap:5px}.active-actions button{border-radius:999px;padding:5px 10px;min-width:110px;font-size:11px}.active-actions .detail{background:#fff275;border-color:#c0a900}.active-actions .ask{background:#b9e4b2;border-color:#75a86d}.active-actions .none{background:#d2d2d2;border-color:#aaa}.seats{color:#f0a126;font-size:17px}.no-seats{color:#777}
+.route-hero{background:#fff;border:1px solid var(--bd);border-radius:20px;padding:12px;box-shadow:var(--shadow)}
+.route-toolbar{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;margin-bottom:12px}.route-toolbar label{text-align:left}.route-toolbar button{height:43px;margin:0}.route-map-card{padding:0;border:0}.route-preview{height:300px}.app-title{text-align:center;margin:14px 0 8px}.home-actions button{min-height:44px}.active-row{cursor:pointer;transition:.18s ease}.active-row:hover{background:#fffaf3}.active-row.selected{background:#fff3df;box-shadow:inset 4px 0 var(--brand)}.active-main p{margin:3px 0 0;font-size:12px;color:var(--mu)}.active-price span{display:block;font-size:11px;color:var(--mu);text-transform:uppercase}.active-price b{display:block;font-size:20px;text-align:center}.active-actions button{font-weight:800}.modal-backdrop{position:fixed;inset:0;z-index:1000;background:rgba(25,22,19,.58);display:grid;place-items:center;padding:18px}.route-modal{position:relative;width:min(680px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 24px 70px rgba(0,0,0,.28)}.modal-close{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;font-size:22px;padding:0}.modal-meta{color:var(--brand-d);font-weight:800}.modal-reserve{width:100%;margin-top:14px}.route-modal .map-wrap iframe{height:260px}
+@media (max-width:680px){.route-toolbar{grid-template-columns:1fr}.route-toolbar button{width:100%}.route-preview{height:220px}.home-actions{gap:8px}.home-actions button{min-width:0;flex:1;font-size:13px}.active-row{grid-template-columns:1fr auto}.active-actions{grid-column:1/-1;flex-direction:row}.active-actions button{flex:1}.active-main strong{font-size:16px}.active-main small{font-size:14px}.active-title{font-size:17px}.active-panel{border-radius:10px}.route-modal{padding:16px}.route-modal .map-wrap iframe{height:220px}}
+@media (max-width:430px){.grid{grid-template-columns:1fr}.tag{display:none}.logo{font-size:21px}.logo-mark{width:38px;height:38px}.ses{margin-top:4px}button{width:100%}.row button,.trip button,a.btn{width:100%;text-align:center;margin-bottom:6px}.top{gap:8px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap top">
+    <div><div class="logo"><span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15l1.5-4.5A2.5 2.5 0 0 1 6.9 9h10.2a2.5 2.5 0 0 1 2.4 1.5L21 15"/><path d="M3 15h18v4H3z"/><circle cx="7" cy="17" r="1.5" fill="currentColor"/><circle cx="17" cy="17" r="1.5" fill="currentColor"/><path d="M7 9l1-3h8l1 3"/></svg></span>Ruta <span>Chévere</span></div><div class="tag">Viaja cómodo, seguro y a precio justo. Comparte tu ruta.</div></div>
+    <div class="ses"><label style="color:#fff;margin:0">Ingresar como</label><select id="ses"></select></div>
+  </div>
+</header>
+<main>
+  <nav id="nav"></nav>
+  <div id="flash"></div>
+  <div id="view"></div>
+</main>
+<footer>Prototipo MVP. Los datos se guardan solo en este navegador. Tratamiento de datos personales conforme a la Ley 1581 de 2012.</footer>
+
+<script>
+const KEY = 'rutachevere_mvp_v1';
+let db = load();
+let view = null;
+let flash = null;
+let filtro = { o: '', d: '', f: '' };
+let rutaSeleccionada = null;
+
+/* ---------- Datos ---------- */
+function dayISO(n){ const d = new Date(); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); }
+function seed(){
+  return {
+    nid: 100, session: null,
+    users: [
+      { id: 1, name: 'Equipo Ruta Chévere', phone: '', role: 'admin', doc: '', ok: true },
+      { id: 2, name: 'Carlos Ramírez', phone: '3001112233', role: 'conductor', doc: '1000000001', ok: true },
+      { id: 3, name: 'Laura Gómez', phone: '3002223344', role: 'pasajero', doc: '1000000002', ok: true },
+      { id: 4, name: 'Andrés Pérez', phone: '3003334455', role: 'pasajero', doc: '1000000003', ok: false }
+    ],
+    trips: [
+      { id: 10, driverId: 2, o: 'Suba', d: 'Universidad', date: dayISO(1), time: '06:30', seats: 3, fare: 4500, point: 'Av. Suba con Calle 127', status: 'abierto', bookings: [] },
+      { id: 11, driverId: 2, o: 'Kennedy', d: 'Centro', date: dayISO(1), time: '07:00', seats: 2, fare: 4000, point: 'Av. Boyacá con Calle 38 sur', status: 'abierto', bookings: [] }
+    ]
+  };
+}
+function load(){ try { const s = localStorage.getItem(KEY); if (s) return JSON.parse(s); } catch (e) {} return seed(); }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+
+/* ---------- Utilidades ---------- */
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const cop = n => '$' + Math.round(n).toLocaleString('es-CO');
+const me = () => db.users.find(u => u.id === db.session) || null;
+const user = id => db.users.find(u => u.id === id);
+const trip = id => db.trips.find(t => t.id === Number(id));
+const free = t => t.seats - t.bookings.length;
+function fmtDate(s){ const [y, m, d] = s.split('-'); return d + '/' + m + '/' + y; }
+function routeMap(o, d, point = ''){
+  const origin = encodeURIComponent(o + ', Bogotá, Colombia');
+  const destination = encodeURIComponent(d + ', Bogotá, Colombia');
+  const via = point ? '&layer=transit' : '';
+  const embed = 'https://www.google.com/maps?q=' + origin + '+to+' + destination + '&output=embed' + via;
+  const external = 'https://www.google.com/maps/dir/?api=1&origin=' + origin + '&destination=' + destination + '&travelmode=driving';
+  return '<div class="map-wrap"><iframe title="Ruta de ' + esc(o) + ' a ' + esc(d) + '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="' + embed + '"></iframe></div>' +
+    '<div class="map-actions"><a class="btn" target="_blank" rel="noopener" href="' + external + '">Abrir ruta en Google Maps</a>' +
+    (point ? '<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(point + ', Bogotá, Colombia') + '">Ver punto de encuentro</a>' : '') + '</div>';
+}
+function driverAvg(id){
+  const r = [];
+  db.trips.forEach(t => { if (t.driverId === id) t.bookings.forEach(b => { if (b.rating) r.push(b.rating); }); });
+  return r.length ? { avg: (r.reduce((a, b) => a + b, 0) / r.length).toFixed(1), n: r.length } : null;
+}
+function setFlash(type, text){ flash = { type, text }; }
+
+/* ---------- Navegación según el rol ---------- */
+const NAVS = {
+  guest: [['registro', 'Registrarme']],
+  pasajero: [['buscar', 'Buscar viajes'], ['reservas', 'Mis reservas'], ['registro', 'Nuevo registro']],
+  conductor: [['publicar', 'Publicar viaje'], ['misviajes', 'Mis viajes'], ['registro', 'Nuevo registro']],
+  admin: [['verif', 'Verificación'], ['ind', 'Indicadores'], ['datos', 'Datos']]
+};
+function role(){ const u = me(); return u ? u.role : 'guest'; }
+function defaultView(){ return NAVS[role()][0][0]; }
+
+/* ---------- Vistas ---------- */
+function banner(){
+  const u = me();
+  if (u && !u.ok && u.role !== 'admin') return '<div class="msg m-in">Tu cuenta está pendiente de verificación. Cuando el equipo revise tu documento podrás ' + (u.role === 'conductor' ? 'publicar viajes' : 'reservar cupos') + '.</div>';
+  return '';
+}
+
+function vRegistro(){
+  return '<h2>Crear cuenta</h2><p class="sub">Verificamos a todos los usuarios antes de permitirles viajar. Es la base de la confianza en Ruta Chévere.</p>' +
+  '<div class="card"><div class="row"><div><label>Nombre completo</label><input id="rn"></div><div><label>Celular (WhatsApp)</label><input id="rp" placeholder="3001234567" inputmode="numeric"></div></div>' +
+  '<div class="row"><div><label>Número de documento</label><input id="rd" inputmode="numeric"></div><div><label>Quiero usar Ruta Chévere como</label><select id="rr"><option value="pasajero">Pasajero</option><option value="conductor">Conductor</option></select></div></div>' +
+  '<label style="display:flex;gap:8px;align-items:flex-start;font-size:14px;color:var(--tx)"><input type="checkbox" id="rc">Autorizo el tratamiento de mis datos personales para la prestación del servicio, según la Ley 1581 de 2012.</label>' +
+  '<div style="margin-top:12px"><button class="p" data-act="registrar">Crear cuenta</button></div></div>';
+}
+
+function vBuscar(){
+  const routes = db.trips.filter(t => t.status === 'abierto');
+  if (rutaSeleccionada && !routes.some(t => t.id === rutaSeleccionada)) rutaSeleccionada = routes[0]?.id || null;
+  if (!rutaSeleccionada && routes[0]) rutaSeleccionada = routes[0].id;
+  const selected = trip(rutaSeleccionada) || routes[0];
+  const u = me();
+  const confirmButton = u?.role === 'conductor'
+    ? '<button class="p confirm" data-nav="publicar">Publicar ruta</button>'
+    : '<button class="p confirm" data-nav="reservas">Mis reservas</button>';
+  return banner() + '<div class="app-home">' +
+    '<section class="route-hero"><div class="route-toolbar"><div><label>Origen</label><input id="fo" value="' + esc(filtro.o) + '" placeholder="Ej. Suba"></div><div><label>Destino</label><input id="fd" value="' + esc(filtro.d) + '" placeholder="Ej. Universidad"></div><button class="p search" id="searchRoutes" type="button">Buscar rutas</button></div>' +
+    '<div class="route-map-card"><div class="route-preview">' + (selected ? '<iframe title="Mapa de la ruta seleccionada" loading="lazy" src="https://www.google.com/maps?q=' + encodeURIComponent(selected.o + ' to ' + selected.d + ', Bogotá, Colombia') + '&output=embed"></iframe>' : '<div class="empty">No hay rutas disponibles</div>') + '</div></div></section>' +
+    '<h2 class="app-title">Ruta Chévere</h2><div class="home-actions">' + confirmButton + '<button class="p search" id="clearFilters" type="button">Ver todas</button></div>' +
+    '<section class="active-panel"><div class="active-title">Rutas activas <span id="routeCount"></span></div><div id="lista"></div></section></div>';
+}
+function listaViajes(){
+  const el = document.getElementById('lista'); if (!el) return;
+  const l = db.trips.filter(t => t.status === 'abierto' &&
+    t.o.toLowerCase().includes(filtro.o.toLowerCase()) &&
+    t.d.toLowerCase().includes(filtro.d.toLowerCase()) &&
+    (!filtro.f || t.date === filtro.f));
+  const count = document.getElementById('routeCount');
+  if (count) count.textContent = l.length ? '(' + l.length + ')' : '(0)';
+  if (!l.length){ el.innerHTML = '<div class="empty">No hay rutas que coincidan con tu búsqueda.</div>'; return; }
+  el.innerHTML = l.map(t => {
+    const f = free(t), c = user(t.driverId);
+    return '<article class="active-row' + (rutaSeleccionada === t.id ? ' selected' : '') + '" data-select-route="' + t.id + '"><div class="active-main"><strong>' + esc(t.d) + '</strong><small>' + esc(t.o) + ' · ' + esc(t.time) + ' · ' + cop(t.fare) + '</small><p>Conductor: ' + esc(c?.name || 'No disponible') + '</p></div>' +
+      '<div class="active-price"><span>Cupos</span><b class="' + (f ? 'seats' : 'no-seats') + '">' + f + '</b></div>' +
+      '<div class="active-actions"><button class="detail" data-detail="' + t.id + '" type="button">Ver detalle</button>' +
+      '<button class="' + (f ? 'ask' : 'none') + '" data-act="reservar" data-id="' + t.id + '" type="button"' + (f ? '' : ' disabled') + '>' + (f ? 'Solicitar' : 'No disponible') + '</button></div></article>';
+  }).join('');
+}
+function mostrarDetalle(id){
+  const t = trip(id); if (!t) return;
+  const c = user(t.driverId), f = free(t);
+  const html = '<div class="modal-backdrop" id="routeModal"><section class="route-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="closeModal" aria-label="Cerrar">×</button><h2 id="modalTitle">' + esc(t.o) + ' → ' + esc(t.d) + '</h2>' +
+    '<p class="modal-meta">' + fmtDate(t.date) + ' · ' + esc(t.time) + ' · ' + cop(t.fare) + ' por cupo</p><p><strong>Punto de encuentro:</strong> ' + esc(t.point) + '</p><p><strong>Conductor:</strong> ' + esc(c?.name || '') + '</p>' + routeMap(t.o,t.d,t.point) +
+    '<button class="p modal-reserve" data-act="reservar" data-id="' + t.id + '" type="button"' + (f ? '' : ' disabled') + '>' + (f ? 'Solicitar ' + f + ' cupo(s)' : 'Sin cupos disponibles') + '</button></section></div>';
+  document.body.insertAdjacentHTML('beforeend', html);
+}
+function vReservas(){
+  const u = me();
+  const mine = db.trips.filter(t => t.bookings.some(b => b.userId === u.id));
+  let h = banner() + '<h2>Mis reservas</h2><p class="sub">Coordina con tu conductor y califica el viaje al terminar.</p>';
+  if (!mine.length) return h + '<div class="empty">Todavía no tienes reservas.</div>';
+  mine.forEach(t => {
+    const b = t.bookings.find(x => x.userId === u.id), c = user(t.driverId);
+    const st = t.status === 'abierto' ? '<span class="badge b-w">Programado</span>' : t.status === 'completado' ? '<span class="badge b-ok">Completado</span>' : '<span class="badge b-r">Cancelado</span>';
+    h += '<div class="card"><h3>' + esc(t.o) + ' → ' + esc(t.d) + st + '</h3><p class="sm">' + fmtDate(t.date) + ' · ' + esc(t.time) + ' · Tarifa: ' + cop(t.fare) + '</p><p class="sm">Punto de encuentro: ' + esc(t.point) + '</p><p class="sm">Conductor: ' + esc(c.name) + '</p>';
+    h += routeMap(t.o, t.d, t.point);
+    h += '<div class="row" style="margin-top:10px;align-items:center">';
+    if (t.status === 'abierto') h += '<a class="btn" target="_blank" rel="noopener" href="https://wa.me/57' + esc(c.phone) + '">Escribir por WhatsApp</a><button class="d s" data-act="cancelarreserva" data-id="' + t.id + '">Cancelar reserva</button>';
+    h += '</div>';
+    if (t.status === 'completado'){
+      if (b.rating) h += '<p class="sm">Tu calificación: ' + b.rating + ' de 5' + (b.incident ? ' · Incidente reportado' : '') + '</p>';
+      else h += '<div class="row" style="margin-top:6px"><div style="max-width:120px"><label>Calificación</label><select id="rt' + t.id + '"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select></div><div><label>Comentario (opcional)</label><input id="cm' + t.id + '"></div></div><label style="display:flex;gap:8px;align-items:center;font-size:14px;color:var(--tx)"><input type="checkbox" id="in' + t.id + '">Reportar un incidente de seguridad o comodidad</label><div style="margin-top:8px"><button class="p s" data-act="calificar" data-id="' + t.id + '">Enviar calificación</button></div>';
+    }
+    h += '</div>';
+  });
+  return h;
+}
+
+function vPublicar(){
+  return banner() + '<h2>Publicar viaje</h2><p class="sub">Comparte los cupos libres de tu recorrido diario y recibe un ingreso extra sin desviarte.</p>' +
+  '<div class="card"><div class="row"><div><label>Origen</label><input id="po" placeholder="Suba"></div><div><label>Destino</label><input id="pd" placeholder="Universidad"></div></div>' +
+  '<div class="row"><div><label>Fecha</label><input id="pf" type="date" min="' + dayISO(0) + '"></div><div><label>Hora de salida</label><input id="ph" type="time"></div><div><label>Cupos (1 a 4)</label><input id="pk" type="number" min="1" max="4"></div><div><label>Tarifa por cupo (COP)</label><input id="pt" type="number" min="0" step="100"></div></div>' +
+  '<div class="row"><div><label>Punto de encuentro sobre la vía principal</label><input id="pp" placeholder="Av. Suba con Calle 127"></div></div><button class="p" data-act="publicar">Publicar viaje</button></div>';
+}
+
+function vMisViajes(){
+  const u = me(), mine = db.trips.filter(t => t.driverId === u.id);
+  let h = banner() + '<h2>Mis viajes</h2><p class="sub">Revisa quién reservó y cierra cada viaje cuando termine.</p>';
+  if (!mine.length) return h + '<div class="empty">Aún no has publicado viajes.</div>';
+  mine.forEach(t => {
+    const st = t.status === 'abierto' ? '<span class="badge b-w">Programado</span>' : t.status === 'completado' ? '<span class="badge b-ok">Completado</span>' : '<span class="badge b-r">Cancelado</span>';
+    h += '<div class="card"><h3>' + esc(t.o) + ' → ' + esc(t.d) + st + '</h3><p class="sm">' + fmtDate(t.date) + ' · ' + esc(t.time) + ' · ' + cop(t.fare) + ' por cupo · ' + t.bookings.length + ' de ' + t.seats + ' cupos ocupados</p>';
+    h += routeMap(t.o, t.d, t.point);
+    if (t.bookings.length) h += '<p class="sm" style="margin-top:6px">Pasajeros: ' + t.bookings.map(b => { const p = user(b.userId); return esc(p.name) + ' (' + esc(p.phone) + ')'; }).join(', ') + '</p>';
+    if (t.status === 'abierto') h += '<div class="row" style="margin-top:10px"><button class="p s" data-act="completar" data-id="' + t.id + '">Marcar como completado</button><button class="d s" data-act="cancelarviaje" data-id="' + t.id + '">Cancelar viaje</button></div>';
+    h += '</div>';
+  });
+  return h;
+}
+
+function vVerif(){
+  const pend = db.users.filter(u => !u.ok && u.role !== 'admin');
+  let h = '<h2>Verificación de usuarios</h2><p class="sub">Revisa el documento de cada persona antes de aprobar su cuenta.</p>';
+  if (!pend.length) h += '<div class="empty">No hay usuarios pendientes.</div>';
+  pend.forEach(u => {
+    h += '<div class="card trip"><div><h3>' + esc(u.name) + '<span class="badge b-w">Pendiente</span></h3><p class="sm">' + (u.role === 'conductor' ? 'Conductor' : 'Pasajero') + ' · Documento: ' + esc(u.doc) + ' · Celular: ' + esc(u.phone) + '</p></div><div class="row" style="margin:0"><button class="p s" data-act="verificar" data-id="' + u.id + '">Verificar</button><button class="d s" data-act="rechazar" data-id="' + u.id + '">Rechazar</button></div></div>';
+  });
+  const ok = db.users.filter(u => u.ok && u.role !== 'admin');
+  h += '<p class="sub" style="margin-top:16px">Usuarios verificados: ' + ok.length + '</p>';
+  return h;
+}
+
+function stats(){
+  const act = db.trips.filter(t => t.status !== 'cancelado');
+  const offered = act.reduce((a, t) => a + t.seats, 0);
+  const occ = act.reduce((a, t) => a + t.bookings.length, 0);
+  const done = db.trips.filter(t => t.status === 'completado');
+  const pt = done.reduce((a, t) => a + t.bookings.length, 0);
+  const ratings = []; let inc = 0;
+  db.trips.forEach(t => t.bookings.forEach(b => { if (b.rating) ratings.push(b.rating); if (b.incident) inc++; }));
+  const cnt = {};
+  db.trips.forEach(t => { if (t.status !== 'cancelado') t.bookings.forEach(b => { cnt[b.userId] = (cnt[b.userId] || 0) + 1; }); });
+  const users1 = Object.keys(cnt).length, users2 = Object.keys(cnt).filter(k => cnt[k] >= 2).length;
+  return {
+    offered, occ, pub: act.length, done: done.length, pt,
+    occPct: offered ? Math.round(occ / offered * 100) : 0,
+    avg: ratings.length ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1) : null,
+    nr: ratings.length, inc,
+    incK: pt ? Math.round(inc / pt * 1000) : 0,
+    ret: users1 ? Math.round(users2 / users1 * 100) : 0
+  };
+}
+function vInd(){
+  const s = stats();
+  return '<h2>Indicadores del experimento</h2><p class="sub">Estos datos permiten validar las hipótesis del modelo de negocio.</p>' +
+  '<div class="grid"><div class="kpi"><span>Ocupación de asientos</span><b>' + s.occPct + '%</b><div class="bar"><i style="width:' + s.occPct + '%"></i></div><p class="sm">' + s.occ + ' de ' + s.offered + ' cupos</p></div>' +
+  '<div class="kpi"><span>Calificación promedio</span><b>' + (s.avg || 'Sin datos') + '</b><div class="bar"><i style="width:' + (s.avg ? s.avg / 5 * 100 : 0) + '%"></i></div><p class="sm">' + s.nr + ' calificaciones</p></div>' +
+  '<div class="kpi"><span>Incidentes por cada 1.000 viajes</span><b>' + s.incK + '</b><p class="sm">' + s.inc + ' incidente(s) en ' + s.pt + ' viajes de pasajero</p></div>' +
+  '<div class="kpi"><span>Retención de usuarios</span><b>' + s.ret + '%</b><div class="bar"><i style="width:' + s.ret + '%"></i></div><p class="sm">Pasajeros con 2 o más reservas</p></div>' +
+  '<div class="kpi"><span>Viajes publicados</span><b>' + s.pub + '</b><p class="sm">' + s.done + ' completados</p></div>' +
+  '<div class="kpi"><span>Usuarios verificados</span><b>' + db.users.filter(u => u.ok && u.role !== 'admin').length + '</b><p class="sm">de ' + db.users.filter(u => u.role !== 'admin').length + ' registrados</p></div></div>';
+}
+
+function vDatos(){
+  return '<h2>Datos del piloto</h2><p class="sub">Exporta la información para analizarla en Excel y presentar los resultados del experimento.</p>' +
+  '<div class="card"><h3>Exportar a CSV</h3><p class="sm">Un registro por cada reserva, con viaje, pasajero, calificación e incidentes.</p><div style="margin-top:10px"><button class="p" data-act="exportar">Descargar datos</button></div></div>' +
+  '<div class="card"><h3>Restablecer</h3><p class="sm">Vuelve a los datos de ejemplo o borra todo para iniciar el piloto real.</p><div class="row" style="margin-top:10px"><button data-act="reset">Restablecer datos de ejemplo</button><button class="d" data-act="borrar">Borrar todos los datos</button></div></div>';
+}
+
+/* ---------- Render ---------- */
+function render(){
+  const sel = document.getElementById('ses');
+  sel.innerHTML = '<option value="">Sin ingresar</option>' + db.users.map(u => '<option value="' + u.id + '"' + (u.id === db.session ? ' selected' : '') + '>' + esc(u.name) + ' (' + u.role + ')</option>').join('');
+  const items = NAVS[role()];
+  if (!view || !items.some(i => i[0] === view)) view = defaultView();
+  document.getElementById('nav').innerHTML = items.map(i => '<button data-nav="' + i[0] + '" class="' + (view === i[0] ? 'on' : '') + '">' + i[1] + '</button>').join('');
+  document.getElementById('flash').innerHTML = flash ? '<div class="msg ' + (flash.type === 'ok' ? 'm-ok' : 'm-er') + '">' + esc(flash.text) + '</div>' : '';
+  flash = null;
+  const V = { registro: vRegistro, buscar: vBuscar, reservas: vReservas, publicar: vPublicar, misviajes: vMisViajes, verif: vVerif, ind: vInd, datos: vDatos };
+  document.getElementById('view').innerHTML = V[view]();
+  if (view === 'buscar') listaViajes();
+}
+
+/* ---------- Acciones ---------- */
+const val = id => { const e = document.getElementById(id); return e ? e.value.trim() : ''; };
+function act(a, id){
+  const u = me();
+  if (a === 'registrar'){
+    const n = val('rn'), p = val('rp'), d = val('rd'), r = val('rr'), c = document.getElementById('rc').checked;
+    if (n.length < 3) return fail('Escribe tu nombre completo.');
+    if (!/^3\d{9}$/.test(p)) return fail('Escribe un celular válido de 10 dígitos que empiece por 3.');
+    if (!/^\d{6,10}$/.test(d)) return fail('El documento debe tener entre 6 y 10 dígitos.');
+    if (db.users.some(x => x.doc === d)) return fail('Ya existe una cuenta con ese documento.');
+    if (!c) return fail('Debes autorizar el tratamiento de tus datos personales.');
+    const nu = { id: db.nid++, name: n, phone: p, role: r, doc: d, ok: false };
+    db.users.push(nu); db.session = nu.id; view = null;
+    setFlash('ok', 'Cuenta creada. El equipo verificará tu documento.');
+  }
+  if (a === 'reservar'){
+    const t = trip(id);
+    if (!u || u.role !== 'pasajero') return fail('Ingresa como pasajero para reservar.');
+    if (!u.ok) return fail('Tu cuenta aún no está verificada.');
+    if (t.driverId === u.id) return fail('No puedes reservar tu propio viaje.');
+    if (t.bookings.some(b => b.userId === u.id)) return fail('Ya reservaste este viaje.');
+    if (!free(t)) return fail('Este viaje ya no tiene cupos.');
+    t.bookings.push({ userId: u.id, rating: null, comment: '', incident: false });
+    setFlash('ok', 'Cupo reservado. Coordina con el conductor desde Mis reservas.');
+  }
+  if (a === 'cancelarreserva'){ const t = trip(id); t.bookings = t.bookings.filter(b => b.userId !== u.id); setFlash('ok', 'Reserva cancelada.'); }
+  if (a === 'calificar'){
+    const t = trip(id), b = t.bookings.find(x => x.userId === u.id);
+    b.rating = parseInt(val('rt' + id), 10); b.comment = val('cm' + id); b.incident = document.getElementById('in' + id).checked;
+    setFlash('ok', 'Gracias por tu calificación.');
+  }
+  if (a === 'publicar'){
+    const o = val('po'), d = val('pd'), f = val('pf'), h = val('ph'), k = parseInt(val('pk'), 10), t = parseInt(val('pt'), 10), p = val('pp');
+    if (!u || u.role !== 'conductor') return fail('Ingresa como conductor para publicar.');
+    if (!u.ok) return fail('Tu cuenta aún no está verificada.');
+    if (!o || !d || !f || !h || !p) return fail('Completa origen, destino, fecha, hora y punto de encuentro.');
+    if (f < dayISO(0)) return fail('La fecha no puede ser anterior a hoy.');
+    if (!(k >= 1 && k <= 4)) return fail('Los cupos deben estar entre 1 y 4.');
+    if (!(t >= 0)) return fail('Escribe la tarifa por cupo.');
+    db.trips.push({ id: db.nid++, driverId: u.id, o, d, date: f, time: h, seats: k, fare: t, point: p, status: 'abierto', bookings: [] });
+    view = 'misviajes'; setFlash('ok', 'Viaje publicado.');
+  }
+  if (a === 'completar'){ trip(id).status = 'completado'; setFlash('ok', 'Viaje completado. Los pasajeros ya pueden calificarlo.'); }
+  if (a === 'cancelarviaje'){ trip(id).status = 'cancelado'; setFlash('ok', 'Viaje cancelado.'); }
+  if (a === 'verificar'){ user(Number(id)).ok = true; setFlash('ok', 'Usuario verificado.'); }
+  if (a === 'rechazar'){ db.users = db.users.filter(x => x.id !== Number(id)); setFlash('ok', 'Usuario rechazado.'); }
+  if (a === 'exportar') return exportar();
+  if (a === 'reset'){ if (!confirm('Se perderán los datos actuales. ¿Continuar?')) return; db = seed(); view = null; setFlash('ok', 'Datos de ejemplo restablecidos.'); }
+  if (a === 'borrar'){
+    if (!confirm('Se borrarán todos los datos del piloto. ¿Continuar?')) return;
+    db = { nid: 100, session: 1, users: [{ id: 1, name: 'Equipo Ruta Chévere', phone: '', role: 'admin', doc: '', ok: true }], trips: [] };
+    view = null; setFlash('ok', 'Datos borrados. Puedes iniciar el piloto.');
+  }
+  save(); render();
+}
+function fail(m){ setFlash('er', m); render(); }
+
+function exportar(){
+  const rows = [['viaje', 'conductor', 'origen', 'destino', 'fecha', 'hora', 'tarifa', 'estado', 'pasajero', 'calificacion', 'incidente', 'comentario']];
+  db.trips.forEach(t => {
+    const c = user(t.driverId);
+    if (!t.bookings.length) rows.push([t.id, c.name, t.o, t.d, t.date, t.time, t.fare, t.status, '', '', '', '']);
+    t.bookings.forEach(b => rows.push([t.id, c.name, t.o, t.d, t.date, t.time, t.fare, t.status, user(b.userId).name, b.rating || '', b.incident ? 'si' : 'no', b.comment]));
+  });
+  const csv = rows.map(r => r.map(x => '"' + String(x).replace(/"/g, '""') + '"').join(';')).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' }));
+  a.download = 'datos-piloto-ruta-chevere.csv';
+  a.click();
+}
+
+/* ---------- Eventos ---------- */
+document.addEventListener('click', e => {
+  const n = e.target.closest('[data-nav]');
+  if (n){ view = n.dataset.nav; render(); return; }
+  const select = e.target.closest('[data-select-route]');
+  if (select && !e.target.closest('[data-detail]') && !e.target.closest('[data-act]')){
+    rutaSeleccionada = Number(select.dataset.selectRoute);
+    render();
+  }
+  const detail = e.target.closest('[data-detail]');
+  if (detail){ mostrarDetalle(Number(detail.dataset.detail)); return; }
+  const close = e.target.closest('#closeModal') || e.target.classList?.contains('modal-backdrop');
+  if (close) document.getElementById('routeModal')?.remove();
+  if (e.target.closest('#clearFilters')){ filtro = { o: '', d: '', f: '' }; rutaSeleccionada = null; render(); }
+  if (e.target.closest('#searchRoutes')){
+    filtro.o = document.getElementById('fo')?.value.trim() || '';
+    filtro.d = document.getElementById('fd')?.value.trim() || '';
+    rutaSeleccionada = null;
+    render();
+  }
+  const b = e.target.closest('[data-act]');
+  if (b) act(b.dataset.act, b.dataset.id);
+});
+document.getElementById('ses').addEventListener('change', e => {
+  db.session = e.target.value ? Number(e.target.value) : null; view = null; save(); render();
+});
+document.addEventListener('input', e => {
+  if (view === 'buscar') {
+    if (e.target.id === 'fo') filtro.o = e.target.value;
+    if (e.target.id === 'fd') filtro.d = e.target.value;
+  }
+});
+render();
+</script>
+</body>
+</html>
